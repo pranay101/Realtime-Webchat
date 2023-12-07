@@ -1,7 +1,7 @@
 const socket = new WebSocket("ws://localhost:8000/websocket")
 
 
-const connect = () =>{
+const connect = (cb) =>{
     console.log("Attempting Connection...");
 
     socket.onopen = () => {
@@ -10,6 +10,7 @@ const connect = () =>{
 
     socket.onmessage = (message) => {
         console.log(message);
+        cb(message)
     }
 
     socket.onclose = event =>{
